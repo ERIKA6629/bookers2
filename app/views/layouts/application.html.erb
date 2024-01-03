@@ -13,19 +13,41 @@
 
   <body>
     <header>
+      <p><%= link_to "Bookers", root_path %></p>
       <% if user_signed_in? %>
-        <li>
-          <%= link_to "Log out", destroy_user_session_path, method: :delete %>
-        </li>
+        <a href='<%= "/users/#{current_user.id}" %>'>
+          <i class="fa-solid fa-house"></i>Home
+        </a>
+       
+        <a href="/users">
+          <i class="fa-solid fa-users"></i>Users
+        </a>
+        <a href="/books">
+          <i class="fa-solid fa-book-open"></i>Books
+        </a>
+        
+        <a rel="nofollow" data-method="delete" href="/users/sign_out">
+          <i class="fa-solid fa-right-from-bracket"></i>Log out
+        </a>
       <% else %>
-        <li>
-          <%= link_to "Sing up", new_user_registration_path %>
-        </li>
-        <li>
-          <%= link_to "Sing in", new_user_session_path %>
-        </li>
+        <a href="/">
+          <i class="fa-solid fa-house"></i>Home
+        </a>
+        <a href="/homes/about">
+          <i class="fa-solid fa-link"></i>About
+        </a>
+        <a href="/users/sign_up">
+          <i class="fa-solid fa-user-plus"></i>Sign up
+        </a>
+        <a href="/users/sign_in">
+          <i class="fa-solid fa-right-to-bracket"></i>Log in
+        </a>
       <% end %>
     </header>
+    
     <%= yield %>
+    
+    <footer>CopyRight Infratop.inc</footer>
+    
   </body>
 </html>
