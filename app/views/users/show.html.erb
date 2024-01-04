@@ -1,6 +1,20 @@
-<h1>users show</h1>
-<p><%= @user.name %></p>
-<p><%= @user.introduction %></p>
+<h1>Users info</h1>
+<div>
+  <%= image_tag @user.get_image %>
+</div>
+
+<table>
+  <tbody>
+    <tr>
+      <td>name</td>
+      <td><%= @user.name %></td>
+    </tr>
+    <tr>
+      <td>introduction</td>
+      <td><%= @user.introduction %></td>
+    </tr>
+  </tbody>
+</table>
 
 <%= link_to edit_user_path, class: "btn btn btn-secondary text-white", method: :get do %>
   <i class="fa-solid fa-user-gear"></i>

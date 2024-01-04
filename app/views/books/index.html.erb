@@ -1,3 +1,29 @@
-<h2>books index</h2>
 <h2>Books</h2>
 
+<table>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Title</th>
+        <th>Opinion</th>
+      </tr>
+    </thead>
+    
+    <% @book.each do |f| %>    
+      <tbody>
+        <tr>
+          <td>
+            <%= link_to user_path(f.user_id) do %>
+              <%= image_tag f.user.get_image %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to book_path(f) do %>
+              <%= f.title %>
+            <% end %>
+          </td>
+          <td><%= f.body %></td>
+        </tr>
+      </tbody>
+    <% end %>
+  </table>

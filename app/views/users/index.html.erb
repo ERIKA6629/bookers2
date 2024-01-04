@@ -1,2 +1,21 @@
-<h2>users index</h2>
+<h2>Users</h2>
 
+  <table>
+    <thead>
+      <tr>
+        <th>image</th>
+        <th>name</th>
+        <th></th>
+      </tr>
+    </thead>
+    
+    <% @user.each do |f| %>    
+      <tbody>
+        <tr>
+          <td><%= image_tag f.get_image %></td>
+          <td><%= f.name %></td>
+          <td><%= link_to "Show", user_path(f) %></td>
+        </tr>
+      </tbody>
+    <% end %>
+  </table>
