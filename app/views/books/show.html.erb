@@ -1,3 +1,32 @@
 <h2>Book detail</h2>
-<p><%= @book.title %></p>
-<p><%= @book.body %></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>
+        <%= link_to user_path(@book.user_id) do %>
+              <%= image_tag @book.user.get_image %><br>
+              <%= @book.user.name %>
+        <% end %>
+      </td>
+      <td>
+        <%= link_to book_path(@book) do %>
+          <%= @book.title %>
+        <% end %>
+      </td>
+      <td>
+        <%= @book.body %>
+      </td>
+      <td>
+        <% if @book.user == current_user %>
+          <%= link_to "Edit", edit_book_path(@book) %>
+        <% end %>
+      </td>
+      <td>
+        <% if @book.user == current_user %>
+          <%= link_to "Destroy", book_path(@book), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
+</table>
