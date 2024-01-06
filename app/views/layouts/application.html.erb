@@ -13,39 +13,46 @@
 
   <body>
     <header>
-      <p><%= link_to "Bookers", root_path %></p>
-      <% if user_signed_in? %>
-        <a href='<%= "/users/#{current_user.id}" %>'>
-          <i class="fa-solid fa-house"></i>Home
-        </a>
-       
-        <a href="/users">
-          <i class="fa-solid fa-users"></i>Users
-        </a>
-        <a href="/books">
-          <i class="fa-solid fa-book-open"></i>Books
-        </a>
-        
-        <a rel="nofollow" data-method="delete" href="/users/sign_out">
-          <i class="fa-solid fa-right-from-bracket"></i>Log out
-        </a>
-      <% else %>
-        <a href="/">
-          <i class="fa-solid fa-house"></i>Home
-        </a>
-        <a href="/homes/about">
-          <i class="fa-solid fa-link"></i>About
-        </a>
-        <a href="/users/sign_up">
-          <i class="fa-solid fa-user-plus"></i>Sign up
-        </a>
-        <a href="/users/sign_in">
-          <i class="fa-solid fa-right-to-bracket"></i>Log in
-        </a>
-      <% end %>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style>
+        <a class="navbar-brand" href='<%= "/" %>'>Bookers</a>
+        <% if user_signed_in? %>
+          <a href='<%= "/users/#{current_user.id}" %>'>
+            <i class="fa-solid fa-house"></i>Home
+          </a>
+         
+          <a href="/users">
+            <i class="fa-solid fa-users"></i>Users
+          </a>
+          <a href="/books">
+            <i class="fa-solid fa-book-open"></i>Books
+          </a>
+          
+          <a rel="nofollow" data-method="delete" href="/users/sign_out">
+            <i class="fa-solid fa-right-from-bracket"></i>Log out
+          </a>
+        <% else %>
+          <a href="/">
+            <i class="fa-solid fa-house"></i>Home
+          </a>
+          <a href="/homes/about">
+            <i class="fa-solid fa-link"></i>About
+          </a>
+          <a href="/users/sign_up">
+            <i class="fa-solid fa-user-plus"></i>Sign up
+          </a>
+          <a href="/users/sign_in">
+            <i class="fa-solid fa-right-to-bracket"></i>Log in
+          </a>
+        <% end %>
+      </nav>
     </header>
-    
-    <%= yield %>
+    <main>
+      <% flash.each do |message_type, message| %>
+        <div class="flash-massage <%= message_type %>"><%= message %></div>
+      <% end %>
+      
+      <%= yield %>
+    </main>
     
     <footer>CopyRight Infratop.inc</footer>
     
