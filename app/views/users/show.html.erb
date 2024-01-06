@@ -15,7 +15,8 @@
     </tr>
   </tbody>
 </table>
-
-<%= link_to edit_user_path, class: "btn btn btn-secondary text-white", method: :get do %>
-  <i class="fa-solid fa-user-gear"></i>
+<% if @user == current_user %>
+  <%= link_to edit_user_path, class: "btn btn btn-secondary text-white", method: :get do %>
+    <i class="fa-solid fa-user-gear"></i>
+  <% end %>
 <% end %>
