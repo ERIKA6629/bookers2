@@ -1,22 +1,43 @@
-<h1>Users info</h1>
-<div>
-  <%= image_tag @user.get_image %>
-</div>
+<div class="container px-5 px-sm-0">
+  <div class="row">
 
-<table>
-  <tbody>
-    <tr>
-      <td>name</td>
-      <td><%= @user.name %></td>
-    </tr>
-    <tr>
-      <td>introduction</td>
-      <td><%= @user.introduction %></td>
-    </tr>
-  </tbody>
-</table>
-<% if @user == current_user %>
-  <%= link_to edit_user_path, class: "btn btn btn-secondary text-white", method: :get do %>
-    <i class="fa-solid fa-user-gear"></i>
-  <% end %>
-<% end %>
+    <%= render 'books/new',book: @book, user: @user %>
+    
+    <div class="col-md-8 offset-md-1">
+      <h2>Books</h2>
+
+      <table class="table table-hover table-inverse">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Title</th>
+              <th>Opinion</th>
+            </tr>
+          </thead>
+          
+          <% @book_index.each do |f| %>   
+            <% if f.user_id == @user.id %>
+            <tbody>
+              <tr>
+                <td>
+                  <%= link_to user_path(f.user_id) do %>
+                    <%= image_tag f.user.get_image %>
+                  <% end %>
+                </td>
+                <td>
+                  <%= link_to book_path(f) do %>
+                    <%= f.title %>
+                  <% end %>
+                </td>
+                <td><%= f.body %></td>
+              </tr>
+            </tbody>
+            <% end %>
+          <% end %>
+        </table>
+
+    </div>
+  
+  </div>
+
+</div>

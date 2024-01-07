@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
-  before_action :correct_user, only: [:edit, :update]
   
   def new
     
@@ -15,11 +13,16 @@ class UsersController < ApplicationController
   end
   
   def index
-    @user = User.all
+    @user_index = User.all
+    @user = current_user
+    @book = Book.new
   end
   
   def show
+    
     @user = User.find(params[:id])
+    @book = Book.new
+    @book_index = Book.all
   end
   
   def update
@@ -37,8 +40,10 @@ class UsersController < ApplicationController
       params.require(:user).permit(:name, :image, :introduction)
     end
     
-    def correct_user
-    @user = User.find(params[:id])
-    redirect_to user_path(current_user) unless @user == current_user
-  end
+    def is_matching_login_user
+      user = User.find(params[:id])
+      unless user.id == current_user.id
+        redirect_to new_user_session_path
+      end
+    end
 end

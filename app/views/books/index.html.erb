@@ -1,31 +1,47 @@
+<div class="container px-5 px-sm-0">
+  <% if @book.errors.any? %>
+    <%= @book.errors.count %>errors prohibited this obj from being saved:
+    <ul>
+      <% @book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
 
 
-<h2>Books</h2>
-
-<table>
-    <thead>
-      <tr>
-        <th></th>
-        <th>Title</th>
-        <th>Opinion</th>
-      </tr>
-    </thead>
+  <div class="row">
+    <%= render 'new',book: @book, user: @user %>
     
-    <% @book.each do |f| %>    
-      <tbody>
-        <tr>
-          <td>
-            <%= link_to user_path(f.user_id) do %>
-              <%= image_tag f.user.get_image %>
-            <% end %>
-          </td>
-          <td>
-            <%= link_to book_path(f) do %>
-              <%= f.title %>
-            <% end %>
-          </td>
-          <td><%= f.body %></td>
-        </tr>
-      </tbody>
-    <% end %>
-  </table>
+    <div class="col-md-8 offset-md-1">
+      <h2>Books</h2>
+        <table class="table table-hover table-inverse">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Title</th>
+              <th>Opinion</th>
+            </tr>
+          </thead>
+          
+          <% @book_index.each do |f| %>
+              <tbody>
+                <tr>
+                  <td>
+                    <%= link_to user_path(f.user_id) do %>
+                      <%= image_tag f.user.get_image %>
+                    <% end %>
+                  </td>
+                  <td>
+                    <%= link_to book_path(f) do %>
+                      <%= f.title %>
+                    <% end %>
+                  </td>
+                  <td><%= f.body %></td>
+                </tr>
+              </tbody>
+          <% end %>
+        </table>
+    </div>
+  </div>
+</div>
+
